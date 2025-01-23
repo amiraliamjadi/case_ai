@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Sentiment Dashboard</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="https://i1.rgstatic.net/ii/institution.image/AS%3A267459972534276%401440778834786_l" alt="Deggendorf Institute of Technology" class="institution-header-avatar__img">
+            <h1>Sentiment Dashboard</h1>
+        </nav>
+    </header>
+
+    <main>
+        <section id="filters">
+            <div class="filter-group">
+                <div>
+                    <label for="country" class="country">Select Country:</label>
+                    <radiogroup class="select-country">
+                        <label for="category">Germany:</label>
+                        <input type="radio"  name="country" onchange="updateBranches('Germany')" id="germany">
+                        <label for="category">Austria:</label>
+                        <input type="radio" name="country"  onchange="updateBranches('Austria')" id="austria">
+                    </radiogroup>
+    
+                    <label for="branch">Branch:</label>
+                    <select id="branch" disabled>
+                        <option value="all">All Branches</option>
+                    </select>
+    
+                    <label for="category">Category:</label>
+                    <select id="category" disabled>
+                        <option value="">All Categories</option>
+                        {% for category in categories %}
+                            <option value="{{ category }}">{{ category }}</option>
+                        {% endfor %}
+                    </select>
+                    <button id="apply-filters" disabled>Apply Filters</button>
+                </div>
+
+                <section id="overview">
+                    <div>
+                        <h2>Overview</h2>
+                        <table id="overview-table">
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th>Count</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Countries</td>
+                                    <td id="country-count">2</td>
+                                </tr>
+                                <tr>
+                                    <td>Branches</td>
+                                    <td id="branch-count">148</td>
+                                </tr>
+                                <tr>
+                                    <td>Categories</td>
+                                    <td id="category-count">6</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+<div>
+    <table id="overview-table">
+        <thead>
+            <tr>
+                <th>Score</th>
+                <th>Concept</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Unbearable</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Disappointing</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Fair</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Fantastic</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Legendary</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+                    
+                </section>
+            </div>
+
+          
+        </section>
+
+
+
+        <section id="charts">
+            <h2>Charts</h2>
+            <div class="chart-grid">
+                    <div id="chart1" class="chart" ></div>
+                
+                    <div class="chart" >
+                        <label id="label"></label>
+                        <div id="chart2" ></div>
+                        <div id="score" ></div>
+                    </div>
+                <div id="chart3" class="chart" ></div>
+            </div>
+            <div id="chart4" class="chart chart4" ></div>
+        </section>
+
+        <section id="descriptions">
+            <h2>Translated Descriptions</h2>
+            <ul id="description-list"></ul>
+        </section>
+    </main>
+
+    <footer>
+    </footer>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
